@@ -1,0 +1,484 @@
+:root {
+  --orange:        #FF6B00;
+  --orange-light:  #FF8C35;
+  --orange-glow:   rgba(255, 107, 0, 0.18);
+  --black:         #0D0D0D;
+  --black-soft:    #1A1A1A;
+  --white:         #FFFFFF;
+  --white-off:     #F7F7F7;
+  --gray-light:    #E8E8E8;
+  --gray-mid:      #999999;
+  --gray-dark:     #555555;
+  --header-h:      60px;
+  --green:         #10B981;
+  --red:           #EF4444;
+  --yellow:        #F59E0B;
+  --blue:          #3B82F6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white-off);
+  color: var(--black);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ===== HEADER (brand + user pill) ===== */
+.header {
+  background: var(--black);
+  color: var(--white);
+  height: var(--header-h);
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+/* Brand (Home) */
+.header-brand {
+  display: flex; align-items: center; gap: 9px;
+  text-decoration: none; flex-shrink: 0;
+}
+.brand-mark {
+  width: 34px; height: 34px;
+  background: var(--orange); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--white);
+  position: relative; overflow: hidden; flex-shrink: 0;
+}
+.brand-mark::after {
+  content: '';
+  position: absolute;
+  bottom: -7px; right: -7px;
+  width: 18px; height: 18px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+}
+.brand-wordmark {
+  display: flex; flex-direction: column; line-height: 1;
+}
+.brand-wordmark strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: 1.5px; color: var(--white);
+}
+.brand-wordmark small {
+  font-size: 8px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--orange);
+  margin-top: 1px; display: block;
+}
+
+/* Header right */
+.header-right {
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+
+/* User pill */
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 5px 12px 5px 6px;
+  flex-shrink: 0;
+}
+.user-avatar {
+  width: 30px; height: 30px;
+  background: var(--orange);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px; color: var(--white);
+  flex-shrink: 0;
+}
+.user-pill-info {
+  display: flex; flex-direction: column; line-height: 1.25;
+}
+.user-pill-info strong {
+  font-size: 12px; font-weight: 700; color: var(--white);
+}
+.user-pill-info small {
+  font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--orange);
+}
+
+/* ===== MAIN CONTENT ===== */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  letter-spacing: 1px;
+  color: var(--black);
+}
+
+.page-header h1 span {
+  color: var(--orange);
+}
+
+.page-header p {
+  color: var(--gray-mid);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Alert Messages */
+.alert {
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.alert-success {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--green);
+}
+
+.alert-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--red);
+}
+
+.alert i {
+  font-size: 18px;
+}
+
+/* Rental Cards */
+.rental-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rental-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--gray-light);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+  animation: cardIn 0.4s ease both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rental-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+  border-color: var(--orange);
+}
+
+/* Card Header */
+.rental-header {
+  padding: 16px 20px;
+  background: var(--white-off);
+  border-bottom: 1px solid var(--gray-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rental-id {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-mid);
+  letter-spacing: 0.5px;
+}
+
+.rental-id i {
+  color: var(--orange);
+  margin-right: 6px;
+}
+
+/* Status Badges */
+.rental-status {
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-pending {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--yellow);
+}
+
+.status-confirmed {
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--blue);
+}
+
+.status-active {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--green);
+}
+
+.status-completed {
+  background: rgba(107, 114, 128, 0.12);
+  color: var(--gray-dark);
+}
+
+.status-cancelled {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--red);
+}
+
+.status-unknown {
+  background: rgba(107, 114, 128, 0.12);
+  color: var(--gray-mid);
+}
+
+/* Card Content */
+.rental-content {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.rental-image {
+  flex-shrink: 0;
+  width: 120px;
+  height: 90px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--white-off);
+}
+
+.rental-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.rental-card:hover .rental-image img {
+  transform: scale(1.05);
+}
+
+.rental-details {
+  flex: 1;
+}
+
+.rental-details h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--gray-dark);
+  margin-bottom: 6px;
+}
+
+.detail-item i {
+  color: var(--orange);
+  width: 16px;
+  font-size: 12px;
+}
+
+.detail-item strong {
+  color: var(--black);
+  font-weight: 600;
+}
+
+/* Price breakdown */
+.price-breakdown {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--gray-light);
+}
+
+.price-breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--gray-mid);
+}
+
+/* Card Footer */
+.rental-footer {
+  padding: 16px 20px;
+  background: var(--white-off);
+  border-top: 1px solid var(--gray-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rental-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  color: var(--orange);
+}
+
+.rental-price span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray-mid);
+}
+
+.rental-date {
+  font-size: 12px;
+  color: var(--gray-mid);
+}
+
+.rental-date i {
+  color: var(--orange);
+  margin-right: 4px;
+}
+
+/* Historical data note */
+.historical-note {
+  font-size: 10px;
+  color: var(--gray-mid);
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-light);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 32px;
+  background: var(--white);
+  border-radius: 20px;
+  border: 1px solid var(--gray-light);
+}
+
+.empty-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 107, 0, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.empty-icon i {
+  font-size: 36px;
+  color: var(--orange);
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: var(--gray-mid);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+.btn-primary span, .btn-primary i {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary:hover::after {
+  transform: scaleX(1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .header-content { gap: 8px; }
+  .container { padding: 20px 16px 40px; }
+  .page-header h1 { font-size: 32px; }
+  .rental-content { flex-direction: column; }
+  .rental-image { width: 100%; height: 160px; }
+  .rental-footer { flex-direction: column; text-align: center; }
+  .user-pill-info { display: none; } /* sembunyikan label Rider di mobile */
+}
+
+@media (max-width: 480px) {
+  .header { padding: 0 12px; }
+  .page-header h1 { font-size: 28px; }
+  .rental-header { flex-direction: column; text-align: center; }
+}

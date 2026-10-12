@@ -1,0 +1,445 @@
+:root {
+  --orange:      #FF6B00;
+  --orange-dim:  rgba(255,107,0,0.09);
+  --orange-glow: rgba(255,107,0,0.22);
+  --black:       #0D0D0D;
+  --black-soft:  #1A1A1A;
+  --white:       #FFFFFF;
+  --off-white:   #F6F6F6;
+  --gray-lt:     #E8E8E8;
+  --gray-mid:    #999999;
+  --gray-dk:     #555555;
+  --green:       #10B981;
+  --red:         #EF4444;
+  --header-h:    60px;
+  --radius:      10px;
+  --radius-lg:   14px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off-white);
+  color: var(--black);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ===== HEADER (brand + history + user pill) ===== */
+.header {
+  background: var(--black);
+  height: var(--header-h);
+  padding: 0 20px;
+  position: sticky;
+  top: 0; z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  /* max-width dihapus agar tidak terpusat */
+  width: 100%;
+  height: 100%;
+}
+
+/* Brand (persis admin) */
+.header-brand {
+  display: flex; align-items: center; gap: 9px;
+  text-decoration: none; flex-shrink: 0;
+}
+.brand-mark {
+  width: 34px; height: 34px;
+  background: var(--orange); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--white);
+  position: relative; overflow: hidden; flex-shrink: 0;
+}
+.brand-mark::after {
+  content: '';
+  position: absolute;
+  bottom: -7px; right: -7px;
+  width: 18px; height: 18px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+}
+.brand-wordmark {
+  display: flex; flex-direction: column; line-height: 1;
+}
+.brand-wordmark strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: 1.5px; color: var(--white);
+}
+.brand-wordmark small {
+  font-size: 8px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--orange);
+  margin-top: 1px; display: block;
+}
+
+/* Header right group */
+.header-right {
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+
+/* History icon link (warna abu‑abu seperti di index) */
+.header-history {
+  display: flex; align-items: center; gap: 4px;
+  color: rgba(255,255,255,0.75); text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  padding: 8px; border-radius: 8px;
+  transition: all 0.2s;
+}
+.header-history i {
+  font-size: 16px;
+  color: rgba(255,255,255,0.75); /* ikut warna teks, bukan oranye */
+}
+.header-history:hover {
+  color: var(--white);
+  background: rgba(255,255,255,0.08);
+}
+.header-history:hover i {
+  color: var(--white);
+}
+
+/* Mobile: tidak ada background, tidak ada teks */
+@media (max-width: 768px) {
+  .header-history {
+    background: none !important;
+    padding: 4px;
+  }
+  .header-history span { display: none; }
+}
+
+/* User pill */
+.user-pill {
+  display: flex; 
+  align-items: center; 
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; 
+  padding: 5px 12px 5px 6px;
+  flex-shrink: 0;
+}
+.user-avatar {
+  width: 30px; 
+  height: 30px;
+  background: var(--orange); 
+  border-radius: 7px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px; 
+  color: var(--white); 
+  flex-shrink: 0;
+}
+.user-pill-info { display: flex; flex-direction: column; line-height: 1.25; }
+.user-pill-info strong { font-size: 12px; font-weight: 700; color: var(--white); }
+.user-pill-info small { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--orange); }
+
+/* ===== MAIN LAYOUT ===== */
+.container {
+  max-width: 1000px; margin: 0 auto;
+  padding: 28px 20px 56px;
+}
+
+/* ===== DETAIL CARD ===== */
+.detail-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-lt);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* Card top header */
+.detail-header {
+  background: var(--black);
+  padding: 28px 32px;
+  border-bottom: 3px solid var(--orange);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.detail-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px; letter-spacing: 1px; color: var(--white);
+  line-height: 1; margin-bottom: 6px;
+}
+.detail-brand {
+  font-size: 12px; color: rgba(255,255,255,0.5);
+  font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+}
+.detail-brand span { color: var(--orange); }
+
+/* Image */
+.image-wrap {
+  background: var(--off-white); border-bottom: 1px solid var(--gray-lt);
+  text-align: center; padding: 28px;
+}
+.detail-image {
+  max-width: 100%; height: auto; max-height: 340px;
+  object-fit: cover; border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--gray-lt);
+}
+.info-item { padding: 22px 18px; text-align: center; border-right: 1px solid var(--gray-lt); }
+.info-item:last-child { border-right: none; }
+.info-item i { font-size: 28px; color: var(--orange); margin-bottom: 10px; display: block; }
+.info-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray-mid); margin-bottom: 6px; }
+.info-value { font-size: 17px; font-weight: 700; color: var(--black); }
+.price-value { font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: var(--orange); letter-spacing: 1px; line-height: 1.1; }
+.price-sub { font-size: 12px; color: var(--gray-mid); font-weight: 400; }
+
+/* Description */
+.desc-section { padding: 24px 32px; border-bottom: 1px solid var(--gray-lt); }
+.desc-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--black); margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+.desc-section h3 i { color: var(--orange); font-size: 20px; }
+.desc-content { color: var(--gray-dk); font-size: 14.5px; line-height: 1.75; }
+
+/* Booking Section */
+.booking-section { padding: 28px 32px; background: var(--off-white); }
+.booking-title { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--gray-lt); }
+.booking-title h2 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; color: var(--black); display: flex; align-items: center; gap: 10px; }
+.booking-title h2 i { color: var(--orange); }
+.booking-title p { color: var(--gray-mid); font-size: 13px; margin-top: 5px; }
+.booking-form { max-width: 480px; margin: 0 auto; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--black); }
+.form-group label i { color: var(--orange); width: 14px; font-size: 12px; }
+.form-group input {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid var(--gray-lt); border-radius: var(--radius);
+  font-size: 14px; font-family: 'DM Sans', sans-serif;
+  background: var(--white); color: var(--black);
+  transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+}
+.form-group input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-glow); }
+
+.price-summary {
+  background: var(--white); border: 1.5px solid var(--gray-lt);
+  border-radius: var(--radius); padding: 18px; margin: 20px 0; transition: all 0.2s;
+}
+.price-summary-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-mid); margin-bottom: 14px; display: flex; align-items: center; gap: 7px; }
+.price-summary-title i { color: var(--orange); }
+.price-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 13px; border-bottom: 1px dashed var(--gray-lt); }
+.price-row:last-of-type { border-bottom: none; }
+.price-row .lbl { color: var(--gray-mid); }
+.price-row .val { font-weight: 600; color: var(--black); }
+.price-total-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; padding-top: 14px; border-top: 2px solid var(--gray-lt); }
+.price-total-row .lbl { font-size: 13px; color: var(--gray-dk); font-weight: 600; }
+.price-total-row strong { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--orange); letter-spacing: 1px; }
+
+.error-alert {
+  background: #FEF2F2; border: 1px solid #FEE2E2;
+  color: var(--red); padding: 12px 16px; border-radius: var(--radius);
+  margin-bottom: 18px; font-size: 13.5px; display: flex; align-items: center; gap: 9px;
+}
+
+.btn-book {
+  width: 100%; 
+  padding: 14px; 
+  background: var(--black); 
+  color: var(--white);
+  border: none; 
+  border-radius: var(--radius); 
+  font-size: 15px; 
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif; 
+  cursor: pointer; 
+  transition: all 0.25s;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 9px;
+  position: relative; 
+  overflow: hidden;
+}
+.btn-book::after { content: ''; 
+  position: absolute; 
+  inset: 0; 
+  background: var(--orange); 
+  transform: scaleX(0); 
+  transform-origin: left; 
+  transition: transform 0.3s ease; 
+  z-index: 0; }
+.btn-book span, .btn-book i { position: relative; z-index: 1; }
+/* Hover hanya jalan kalau tombol TIDAK disabled */
+.btn-book:not(:disabled):hover::after { 
+    transform: scaleX(1); 
+}
+
+.btn-book:not(:disabled):hover { 
+    box-shadow: 0 6px 20px rgba(255,107,0,0.3); 
+    transform: translateY(-1px); 
+    cursor: pointer;
+}
+
+/* Tambahan: Gaya visual pas tombol mati (tanggal bentrok) */
+.btn-book:disabled {
+    background: #ccc;      /* Warna abu-abu */
+    border-color: #999;
+    color: #666;
+    cursor: not-allowed;   /* Icon kursor dilarang */
+    transform: none;       /* Matiin efek gerak */
+    box-shadow: none;
+}
+/* Unavailable */
+.unavailable-state { text-align: center; padding: 48px 32px; }
+.unavailable-icon { width: 72px; height: 72px; background: rgba(239,68,68,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+.unavailable-icon i { font-size: 32px; color: var(--red); opacity: 0.7; }
+.unavailable-state h3 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; color: var(--black); margin-bottom: 8px; }
+.unavailable-state p { color: var(--gray-mid); font-size: 14px; margin-bottom: 22px; }
+.btn-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--black); color: var(--white); text-decoration: none;
+  padding: 11px 24px; border-radius: var(--radius); font-weight: 700; transition: all 0.2s;
+}
+.btn-back:hover { background: var(--orange); transform: translateY(-1px); color: var(--white); }
+
+/* Back link bawah (desktop only) */
+.back-link-bottom {
+  display: flex; justify-content: center; margin-top: 24px;
+}
+.back-link-bottom a {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--orange); text-decoration: none; font-weight: 600; font-size: 14px;
+  background: rgba(255,107,0,0.08); padding: 8px 16px; border-radius: 30px;
+  transition: gap 0.2s;
+}
+.back-link-bottom a:hover { gap: 12px; background: rgba(255,107,0,0.15); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .header-content { gap: 8px; }
+  .container { padding: 16px 14px 40px; }
+  .detail-header { padding: 20px; flex-direction: column; align-items: flex-start; }
+  .detail-header h1 { font-size: 32px; }
+  .image-wrap { padding: 20px; }
+  .info-grid { grid-template-columns: 1fr; }
+  .info-item { border-right: none; border-bottom: 1px solid var(--gray-lt); padding: 16px; }
+  .info-item:last-child { border-bottom: none; }
+  .desc-section, .booking-section { padding: 20px; }
+  .desc-section h3 { font-size: 20px; }
+  .booking-title h2 { font-size: 22px; }
+  .price-value { font-size: 26px; }
+  .price-total-row strong { font-size: 24px; }
+  .user-pill-info { display: none; }
+  .back-link-bottom { display: none; }
+}
+
+@media (max-width: 480px) {
+  .header { padding: 0 12px; }
+  .container { padding: 12px 12px 32px; }
+  .detail-header h1 { font-size: 26px; }
+  .detail-brand { font-size: 10px; }
+  .image-wrap { padding: 12px; }
+  .detail-image { max-height: 220px; }
+  .info-item i { font-size: 24px; }
+  .info-value { font-size: 15px; }
+  .price-value { font-size: 22px; }
+  .desc-section h3 { font-size: 18px; }
+  .desc-content { font-size: 13px; }
+  .booking-title h2 { font-size: 20px; }
+  .form-group input { padding: 10px 12px; font-size: 13px; }
+  .price-summary { padding: 14px; }
+  .price-total-row strong { font-size: 22px; }
+  .btn-book { padding: 12px; font-size: 14px; }
+}
+
+/* Logo mark dihapus — aksen garis oranye agar header tidak polos */
+.header-brand .brand-wordmark { border-left: 3px solid var(--orange); padding-left: 10px; }
+
+/* ===== USER DROPDOWN (sama seperti dashboard) ===== */
+.user-dropdown { position: relative; }
+.user-pill { cursor: pointer; transition: all 0.2s; }
+.user-pill:hover { background: rgba(255,255,255,0.10); border-color: var(--orange); }
+.pill-caret { font-size: 10px; color: rgba(255,255,255,.55); transition: transform .2s; margin-left: 2px; }
+.user-dropdown.open .pill-caret { transform: rotate(180deg); color: var(--orange); }
+.user-pill:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 264px;
+  max-width: calc(100vw - 24px);
+  background: var(--white);
+  border: 1px solid var(--gray-lt);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.16);
+  padding: 6px 6px 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 200;
+}
+.dropdown-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.sheet-handle { display: none; }
+.dropdown-user-info {
+  display: block;
+  padding: 12px 12px 10px;
+  background: linear-gradient(135deg, rgba(255,107,0,.10), rgba(255,107,0,.03));
+  border: 1px solid rgba(255,107,0,.18);
+  border-radius: 10px;
+  margin: 6px 6px 4px;
+}
+.dropdown-user-top { display: flex; align-items: center; gap: 10px; }
+.dropdown-user-avatar {
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, var(--orange), #e55200);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px; color: var(--white);
+  flex-shrink: 0;
+}
+.dropdown-user-meta { min-width: 0; }
+.dropdown-user-name { font-weight: 700; font-size: 14px; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dropdown-user-email { font-size: 11.5px; color: #777; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dropdown-user-role { font-size: 10.5px; color: var(--orange); text-transform: uppercase; font-weight: 700; margin-top: 2px; letter-spacing: .4px; }
+.dropdown-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
+.dropdown-stat { background: var(--white); border: 1px solid var(--gray-lt); border-radius: 8px; padding: 6px 4px; text-align: center; }
+.dropdown-stat strong { display: block; font-size: 13px; color: var(--black); }
+.dropdown-stat span { font-size: 9.5px; color: #888; text-transform: uppercase; letter-spacing: .4px; font-weight: 600; }
+.dropdown-label { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; padding: 8px 12px 2px; }
+.dropdown-divider { height: 1px; background: var(--gray-lt); margin: 6px 10px; }
+.dropdown-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  color: var(--black);
+  font-size: 13.5px; font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  border-radius: 8px;
+  margin: 2px 6px;
+}
+.dropdown-item i { width: 16px; color: var(--orange); text-align: center; }
+.dropdown-item:hover { background: var(--off-white); color: var(--orange); }
+.dropdown-item.danger { color: #EF4444; }
+.dropdown-item.danger i { color: #EF4444; }
+.dropdown-item.danger:hover { background: #FEF2F2; color: #DC2626; }
+.dropdown-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 150; }
+@media (max-width: 768px) {
+  .dropdown-overlay.open { display: block; }
+  .dropdown-menu {
+    position: fixed;
+    top: auto; bottom: 0; left: 0; right: 0;
+    width: 100%; min-width: unset; max-width: none;
+    max-height: 78vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    border-bottom: none;
+    transform: translateY(16px);
+    padding-bottom: env(safe-area-inset-bottom, 12px);
+  }
+  .dropdown-menu.open { transform: translateY(0); }
+  .sheet-handle { display: block; width: 40px; height: 4px; background: #ddd; border-radius: 4px; margin: 6px auto 2px; }
+}

@@ -1,0 +1,13 @@
+# Cegah eksekusi PHP di folder upload (tahan upload webshell)
+<FilesMatch "\.(php|phtml|phar|phps|pl|py|jsp|asp|sh|cgi)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+php_flag engine off
+Options -ExecCGI -Indexes
+
